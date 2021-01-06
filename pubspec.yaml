@@ -54,7 +54,7 @@ flutter:
   fonts:
     - family: Poppins
       fonts:
-        - asset: assets/onts/Poppins.ttf
+        - asset: assets/fonts/Poppins.ttf
         
 
     - family: Monteserat

@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:social_media_app/Theme/my_theme.dart';
 
 Future<void> main() async {
-  await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -17,7 +19,9 @@ class MyApp extends StatelessWidget {
       title: "The Socail Media",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Social Meida",),
+          title: Text(
+            "Social Meida",
+          ),
         ),
         body: Center(
           child: Container(
