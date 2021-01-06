@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MyTheme {
   final Color lightColor = Color(0xff6c788a);
   final Color darkColor = Color(0xFF100E20);
@@ -15,9 +14,9 @@ class MyTheme {
   final Color greyColor = Colors.grey.shade600;
   myTheme() {
     return ThemeData(
-      accentColor: blueColor,
-      fontFamily: "Poppins",
-      canvasColor: transperant,
-    );
+        accentColor: blueColor,
+        fontFamily: "Poppins",
+        canvasColor: transperant,
+        backgroundColor: darkColor);
   }
 }

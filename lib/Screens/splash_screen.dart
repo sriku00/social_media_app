@@ -4,7 +4,11 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      body: Center(
+        child: RichText(
+          text: TextSpan(text: "The", children: [TextSpan(text: "Socail")]),
+        ),
+      ),
     );
   }
 }
