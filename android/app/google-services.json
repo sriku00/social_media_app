@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "796188100722",
+    "project_id": "social-media-app-279e9",
+    "storage_bucket": "social-media-app-279e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796188100722:android:132840a380834fa61b5aeb",
+        "android_client_info": {
+          "package_name": "com.sriku.social_media_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796188100722-131jcl322lbj1iq60ajvq17otel1bupe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sriku.social_media_app",
+            "certificate_hash": "ae0b9d1c8c48f9651ec9be9cf1706dd90b2e2433"
+          }
+        },
+        {
+          "client_id": "796188100722-hdlco1gupmno8a91tv3bc9cfpvs16p2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAL_sAGLXvIKFCEZsyEjVxl-W1_uXNUemE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796188100722-hdlco1gupmno8a91tv3bc9cfpvs16p2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
