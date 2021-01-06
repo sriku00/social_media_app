@@ -11,10 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      debugShowCheckedModeBanner: false,
+      title: "The Socail Media",
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Material App Bar'),
+          title: Text("Social Meida"),
         ),
         body: Center(
           child: Container(
