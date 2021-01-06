@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:social_media_app/Screens/splash_screen.dart';
 import 'package:social_media_app/Theme/my_theme.dart';
 
 Future<void> main() async {
@@ -17,18 +18,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme().myTheme(),
       debugShowCheckedModeBanner: false,
       title: "The Socail Media",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Social Meida",
-          ),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
+      home: SplashScreen(),
     );
   }
 }
