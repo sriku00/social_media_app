@@ -5,14 +5,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
+import 'package:social_media_app/Services/userdata_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
 final landingScreenServices =
-    ChangeNotifierProvider<LandingScreenServices>((ref) {
-  return LandingScreenServices();
+    ChangeNotifierProvider<LandingScreenWidgets>((ref) {
+  return LandingScreenWidgets();
 });
 
-class LandingScreenServices extends ChangeNotifier {
+class LandingScreenWidgets extends ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
   // body Image widget
   Widget bodyImage(BuildContext context) {
@@ -83,6 +84,9 @@ class LandingScreenServices extends ChangeNotifier {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             GestureDetector(
+              onTap: () {
+                bottomSheet(context);
+              },
               child: Container(
                 height: 40,
                 width: 80,
@@ -172,4 +176,92 @@ class LandingScreenServices extends ChangeNotifier {
       ),
     );
   }
+
+  // BottomSheet Widget
+
+  bottomSheet(BuildContext context) => showModalBottomSheet(
+        context: context,
+        builder: (context) => Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: constantColors.blueGreyColor,
+            borderRadius: BorderRadius.circular(40),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 140),
+                child: Divider(
+                  thickness: 4,
+                  color: constantColors.whiteColor,
+                ),
+              ),
+              context.read(userDataServices).passwordLessSignIn(context),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    elevation: 18,
+                    color: constantColors.blueColor,
+                    onPressed: () {
+                      //Todo:implement login function
+                    },
+                    child: Text(
+                      "LogIn",
+                      style: TextStyle(
+                          color: constantColors.whiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  MaterialButton(
+                    elevation: 18,
+                    color: constantColors.redColor,
+                    onPressed: () {
+                      //Todo:implement signIn function
+                      signInSheet(context);
+                    },
+                    child: Text(
+                      "SigIn",
+                      style: TextStyle(
+                          color: constantColors.whiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      );
+  // signIN Bottom sheet
+
+  signInSheet(BuildContext context) => showModalBottomSheet(
+        context: context,
+        builder: (context) => Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: constantColors.blueGreyColor,
+            borderRadius: BorderRadius.circular(40),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 140),
+                child: Divider(
+                  thickness: 4,
+                  color: constantColors.whiteColor,
+                ),
+              ),
+              CircleAvatar(
+                backgroundColor: constantColors.redColor,
+                radius: 80.0,
+              )
+            ],
+          ),
+        ),
+      );
 }
