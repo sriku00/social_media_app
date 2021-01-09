@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
-import 'package:social_media_app/Screens/LandingScreen/landing_screen_widgets.dart';
 
+import 'package:hooks_riverpod/all.dart';
+import 'package:social_media_app/Screens/LandingScreen/landing_helpers_screen.dart';
 
 import 'package:social_media_app/Utils/colors_utils.dart';
 
 // ignore: must_be_immutable
-class LandingScreen extends HookWidget {
+class LandingScreen extends StatelessWidget {
   ConstantColors constantColors = ConstantColors();
   @override
   Widget build(BuildContext context) {
-    final provider = useProvider(landingScreenServices);
+    final provider = context.read(landingScreenServices);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(

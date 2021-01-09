@@ -3,6 +3,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
@@ -104,7 +105,8 @@ class LandingScreenServices extends ChangeNotifier {
                   Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          child: null, type: PageTransitionType.bottomToTop));
+                          child: HomeScreen(),
+                          type: PageTransitionType.bottomToTop));
                 });
               },
               child: Container(
