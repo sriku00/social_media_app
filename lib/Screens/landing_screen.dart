@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:social_media_app/Services/landing_screen_services.dart';
+import 'package:social_media_app/Widgets/landing_screen_widgets.dart';
+
 import 'package:social_media_app/Utils/colors_utils.dart';
 
 // ignore: must_be_immutable
@@ -15,16 +16,17 @@ class LandingScreen extends HookWidget {
       body: Stack(
         children: [
           bodyColor(),
-         provider.bodyImage(context),
-         provider.tagLineWidget(context),
-         provider.buttonLanding(context),
-         provider.landingFootBar(context)
+          provider.bodyImage(context),
+          provider.tagLineWidget(context),
+          provider.buttonLanding(context),
+          provider.landingFootBar(context)
         ],
       ),
     );
   }
 }
 
+// body colour widget
 Widget bodyColor() {
   ConstantColors constantColors = ConstantColors();
   return Container(

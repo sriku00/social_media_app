@@ -37,12 +37,14 @@ class LandingScreenServices extends ChangeNotifier {
                 text: " ARe",
                 style: TextStyle(
                     color: Colors.white,
+                    fontFamily: "Poppins",
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
               ),
               TextSpan(
                 text: " YoU",
                 style: TextStyle(
+                    fontFamily: "Poppins",
                     color: Colors.lightBlue,
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
@@ -50,6 +52,7 @@ class LandingScreenServices extends ChangeNotifier {
               TextSpan(
                 text: " SoCiaL",
                 style: TextStyle(
+                    fontFamily: "Poppins",
                     color: Theme.of(context).primaryColor,
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
@@ -131,6 +134,7 @@ class LandingScreenServices extends ChangeNotifier {
     );
   }
 
+// Bottom Terms and Conditions
   Widget landingFootBar(BuildContext context) {
     return Positioned(
       top: 750,
