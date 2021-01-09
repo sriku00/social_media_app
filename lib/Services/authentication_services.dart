@@ -85,7 +85,7 @@ class Authentication extends ChangeNotifier {
       final User user = userCredential.user;
 
       userUid = user.uid;
-      print(" . Google User => $userUid");
+      print(" Google User => $userUid");
     }
   }
 
