@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:social_media_app/Screens/landing_screen.dart';
+import 'package:social_media_app/Screens/LandingScreen/landing_screen.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override

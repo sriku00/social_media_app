@@ -1,7 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:eva_icons_flutter/icon_data.dart';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
 final landingScreenServices =
@@ -97,6 +99,14 @@ class LandingScreenServices extends ChangeNotifier {
               ),
             ),
             GestureDetector(
+              onTap: () {
+                context.read(authentication).googleSignIn().whenComplete(() {
+                  Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                          child: null, type: PageTransitionType.bottomToTop));
+                });
+              },
               child: Container(
                 height: 40,
                 width: 80,
