@@ -65,7 +65,7 @@ class Authentication extends ChangeNotifier {
 
   // Google SignIN
 
-  Future googleSignIn() async {
+  Future googleSignIn(BuildContext context) async {
     final GoogleSignInAccount googleSignInAccount =
         await _googleSignIn.signIn();
 

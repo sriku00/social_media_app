@@ -105,7 +105,10 @@ class LandingScreenWidgets extends ChangeNotifier {
             ),
             GestureDetector(
               onTap: () {
-                context.read(authentication).googleSignIn().whenComplete(() {
+                context
+                    .read(authentication)
+                    .googleSignIn(context)
+                    .whenComplete(() {
                   Navigator.pushReplacement(
                       context,
                       PageTransition(
