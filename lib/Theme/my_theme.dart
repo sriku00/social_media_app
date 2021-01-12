@@ -5,9 +5,38 @@ class MyTheme {
   ConstantColors constantColors = ConstantColors();
   myTheme() {
     return ThemeData(
-        accentColor: constantColors.blueColor,
-        fontFamily: "Poppins",
-        canvasColor: constantColors.transperant,
-        backgroundColor: constantColors.darkColor);
+      accentColor: constantColors.blueColor,
+      fontFamily: "Poppins",
+      canvasColor: constantColors.transperant,
+      backgroundColor: constantColors.darkColor,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+        hintStyle: TextStyle(
+            color: constantColors.whiteColor,
+            fontSize: 16,
+            fontWeight: FontWeight.bold),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0),
+          borderSide: BorderSide(
+            width: 2,
+            color: constantColors.whiteColor,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.0),
+          borderSide: BorderSide(
+            color: constantColors.greyColor,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20.0),
+          borderSide: BorderSide(
+            width: 4,
+            color: constantColors.whiteColor,
+          ),
+        ),
+      ),
+    );
   }
 }

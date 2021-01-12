@@ -208,7 +208,8 @@ class LandingScreenWidgets extends ChangeNotifier {
                     elevation: 18,
                     color: constantColors.blueColor,
                     onPressed: () {
-                      //Todo:implement login function
+                      //Todo:implement login
+                      loginSheet(context);
                     },
                     child: Text(
                       "LogIn",
@@ -239,11 +240,17 @@ class LandingScreenWidgets extends ChangeNotifier {
           ),
         ),
       );
+
   // signIN Bottom sheet
+  TextEditingController userNameTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+  TextEditingController conformPasswordTextController = TextEditingController();
 
   signInSheet(BuildContext context) => showModalBottomSheet(
         context: context,
         builder: (context) => Container(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           height: MediaQuery.of(context).size.height * 0.7,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -251,6 +258,7 @@ class LandingScreenWidgets extends ChangeNotifier {
             borderRadius: BorderRadius.circular(40),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 140),
@@ -262,8 +270,98 @@ class LandingScreenWidgets extends ChangeNotifier {
               CircleAvatar(
                 backgroundColor: constantColors.redColor,
                 radius: 80.0,
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: TextFormField(
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(hintText: "Enter your Name"),
+                  controller: userNameTextController,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: TextFormField(
+                  controller: passwordTextController,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: TextFormField(
+                  controller: conformPasswordTextController,
+                ),
+              ),
             ],
+          ),
+        ),
+      );
+
+  loginSheet(BuildContext context) => showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: constantColors.blueGreyColor,
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 140),
+                  child: Divider(
+                    thickness: 4,
+                    color: constantColors.whiteColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: TextFormField(
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                    decoration: InputDecoration(hintText: "Enter your Name"),
+                    controller: userNameTextController,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: TextFormField(
+                    controller: passwordTextController,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                FloatingActionButton(
+                  onPressed: () {},
+                  child: Text("sign IN"),
+                )
+              ],
+            ),
           ),
         ),
       );
