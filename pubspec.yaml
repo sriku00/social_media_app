@@ -36,7 +36,7 @@ dependencies:
   hooks_riverpod: ^0.12.1
   image_picker: ^0.6.7+21
   page_transition: ^1.1.7+5
-
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter

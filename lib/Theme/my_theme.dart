@@ -11,7 +11,8 @@ class MyTheme {
       backgroundColor: constantColors.darkColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+        
         hintStyle: TextStyle(
             color: constantColors.whiteColor,
             fontSize: 16,
