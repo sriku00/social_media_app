@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
-import 'package:social_media_app/Screens/LandingScreen/landing_services_screen.dart';
+import 'package:social_media_app/Screens/LandingScreen/landing_helpers_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Services/userdata_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';

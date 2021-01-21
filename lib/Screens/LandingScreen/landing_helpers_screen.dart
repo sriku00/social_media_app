@@ -4,11 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
-final landingServices = ChangeNotifierProvider<LandingServicesScreen>((ref) {
-  return LandingServicesScreen();
+final landingServices = ChangeNotifierProvider<LandingHelpersScreen>((ref) {
+  return LandingHelpersScreen();
 });
 
-class LandingServicesScreen extends ChangeNotifier {
+class LandingHelpersScreen extends ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
 
   // signIN Bottom sheet
@@ -127,7 +127,8 @@ class LandingServicesScreen extends ChangeNotifier {
           );
         });
   }
-  // logi Bottom Sheet
+  // logi Bottom Sheet //
+  
 
   loginSheet(BuildContext context) {
     showModalBottomSheet(
