@@ -147,7 +147,7 @@ class LandingHelpersScreen extends ChangeNotifier {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
+              Padding(  
                 padding: EdgeInsets.symmetric(horizontal: 140),
                 child: Divider(
                   thickness: 4,
