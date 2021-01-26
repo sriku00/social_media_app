@@ -18,8 +18,8 @@ class LandingHelpersScreen extends ChangeNotifier {
   TextEditingController passwordTextController = TextEditingController();
   TextEditingController conformPasswordTextController = TextEditingController();
 
-  signInSheet(BuildContext context) {
-    showModalBottomSheet(
+  Future signInSheet(BuildContext context) {
+    return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
@@ -168,7 +168,8 @@ class LandingHelpersScreen extends ChangeNotifier {
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
-                  decoration: const InputDecoration(hintText: "Enter your Name"),
+                  decoration:
+                      const InputDecoration(hintText: "Enter your Name"),
                   controller: userNameTextController,
                 ),
               ),

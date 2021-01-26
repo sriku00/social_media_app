@@ -6,4 +6,4 @@ linter:
   rules:
     always_specify_types: false
     sort_constructors_first: true
-    avoid_classes_with_only_static_members: false
+   

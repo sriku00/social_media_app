@@ -9,7 +9,7 @@ final authentication = ChangeNotifierProvider<Authentication>((ref) {
 
 class Authentication extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   String userUid;
   String get getUserUid => userUid;
@@ -78,8 +78,7 @@ class Authentication extends ChangeNotifier {
     final GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
 
-    final OAuthCredential googleAuthCredential =
-        GoogleAuthProvider.credential(
+    final OAuthCredential googleAuthCredential = GoogleAuthProvider.credential(
       accessToken: googleSignInAuthentication.accessToken,
       idToken: googleSignInAuthentication.idToken,
     );
