@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //ignore_this
       theme: MyTheme().myTheme(),
       debugShowCheckedModeBanner: false,
       title: "The Socail Media",

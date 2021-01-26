@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
+// ignore: always_specify_types
 final landingServices = ChangeNotifierProvider<LandingHelpersScreen>((ref) {
   return LandingHelpersScreen();
 });
@@ -21,33 +22,34 @@ class LandingHelpersScreen extends ChangeNotifier {
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        builder: (context) {
+        builder: (BuildContext context) {
           return Padding(
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               decoration: BoxDecoration(
                   color: constantColors.darkColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
               child: Column(
+                // ignore: always_specify_types
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 140),
+                    padding: const EdgeInsets.symmetric(horizontal: 140),
                     child: Divider(
                       thickness: 4,
                       color: constantColors.whiteColor,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   CircleAvatar(
                     backgroundColor: constantColors.redColor,
                     radius: 80,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Padding(
@@ -55,12 +57,12 @@ class LandingHelpersScreen extends ChangeNotifier {
                     child: TextFormField(
                       style: kSmallTextStyle,
                       controller: userNameTextController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter Your Name",
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 13,
                   ),
                   Padding(
@@ -69,12 +71,12 @@ class LandingHelpersScreen extends ChangeNotifier {
                       keyboardType: TextInputType.emailAddress,
                       style: kSmallTextStyle,
                       controller: emailTextController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "email",
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 13,
                   ),
                   Padding(
@@ -83,12 +85,12 @@ class LandingHelpersScreen extends ChangeNotifier {
                       style: kSmallTextStyle,
                       obscureText: true,
                       controller: passwordTextController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "password",
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 13,
                   ),
                   Padding(
@@ -97,12 +99,12 @@ class LandingHelpersScreen extends ChangeNotifier {
                       style: kSmallTextStyle,
                       obscureText: true,
                       controller: conformPasswordTextController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "conform password",
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 13,
                   ),
                   MaterialButton(
@@ -113,8 +115,8 @@ class LandingHelpersScreen extends ChangeNotifier {
                     onPressed: () {},
                     elevation: 20,
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
                       child: Text(
                         "SignIn",
                         style: kSmallTextStyle,
@@ -128,12 +130,13 @@ class LandingHelpersScreen extends ChangeNotifier {
         });
   }
   // logi Bottom Sheet //
-  
 
-  loginSheet(BuildContext context) {
-    showModalBottomSheet(
+  // ignore: always_specify_types
+  Future loginSheet(BuildContext context) {
+    return showModalBottomSheet(
       isScrollControlled: true,
       context: context,
+      // ignore: always_specify_types
       builder: (context) => Padding(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -146,29 +149,30 @@ class LandingHelpersScreen extends ChangeNotifier {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            // ignore: always_specify_types
             children: [
-              Padding(  
-                padding: EdgeInsets.symmetric(horizontal: 140),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 140),
                 child: Divider(
                   thickness: 4,
                   color: constantColors.whiteColor,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextFormField(
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
-                  decoration: InputDecoration(hintText: "Enter your Name"),
+                  decoration: const InputDecoration(hintText: "Enter your Name"),
                   controller: userNameTextController,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -177,12 +181,12 @@ class LandingHelpersScreen extends ChangeNotifier {
                   controller: passwordTextController,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               FloatingActionButton(
                 onPressed: () {},
-                child: Text("sign"),
+                child: const Text("sign"),
               )
             ],
           ),

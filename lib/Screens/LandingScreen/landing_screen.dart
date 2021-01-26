@@ -29,12 +29,13 @@ class LandingScreen extends HookWidget {
 
 // body colour widget
 Widget bodyColor() {
-  ConstantColors constantColors = ConstantColors();
+  final ConstantColors constantColors = ConstantColors();
   return Container(
     decoration: BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
+        // ignore: prefer_const_literals_to_create_immutables
         stops: [0.5, 0.9],
         colors: [
           constantColors.darkColor,

@@ -15,9 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 1),
+        const Duration(seconds: 1),
         () => Navigator.pushReplacement(
             context,
+            // ignore: always_specify_types
             PageTransition(
                 child: LandingScreen(), type: PageTransitionType.bottomToTop)));
   }
@@ -28,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: RichText(
+          // ignore: always_specify_types
           text: TextSpan(text: "The", children: [
             TextSpan(
                 text: " Socail",

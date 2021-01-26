@@ -3,7 +3,7 @@ import 'package:social_media_app/Utils/colors_utils.dart';
 
 class MyTheme {
   ConstantColors constantColors = ConstantColors();
-  myTheme() {
+  ThemeData myTheme() {
     return ThemeData(
       accentColor: constantColors.blueColor,
       fontFamily: "Poppins",
@@ -11,7 +11,7 @@ class MyTheme {
       backgroundColor: constantColors.darkColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
         
         hintStyle: TextStyle(
             color: constantColors.whiteColor,

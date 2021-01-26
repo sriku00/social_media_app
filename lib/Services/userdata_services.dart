@@ -5,19 +5,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
+// ignore: always_specify_types
 final userDataServices = ChangeNotifierProvider<UserDataServices>((ref) {
   return UserDataServices();
 });
 
 class UserDataServices extends ChangeNotifier {
-  ConstantColors _constantColors = ConstantColors();
+  final ConstantColors _constantColors = ConstantColors();
   Widget passwordLessSignIn(BuildContext context) => SizedBox(
       height: MediaQuery.of(context).size.height * 0.4,
+      // ignore: always_specify_types
       child: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("allUsers").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
@@ -40,14 +42,14 @@ class UserDataServices extends ChangeNotifier {
                   ),
                   subtitle: Text(
                     documentSnapshot.data()["useremail"],
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 12,
                         color: Colors.green,
                         fontWeight: FontWeight.bold),
                   ),
                   title: Text(
                     documentSnapshot.data()["username"],
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 16,
                         color: Colors.green,
                         fontWeight: FontWeight.bold),

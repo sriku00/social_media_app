@@ -18,19 +18,22 @@ class Authentication extends ChangeNotifier {
 
   Future createUserWithEmail(String email, String password) async {
     try {
-      UserCredential userCredential =
+      final UserCredential userCredential =
           await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user != null) {
-        User user = userCredential.user;
+        final User user = userCredential.user;
         userUid = user.uid;
+        // ignore: avoid_print
         print(userUid.toString());
       }
     } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
     notifyListeners();
@@ -40,19 +43,22 @@ class Authentication extends ChangeNotifier {
 
   Future loginUser(String email, String password) async {
     try {
-      UserCredential userCredential =
+      final UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user != null) {
-        User user = userCredential.user;
+        final User user = userCredential.user;
         userUid = user.uid;
+        // ignore: avoid_print
         print(userUid.toString());
       }
     } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
     }
     notifyListeners();
@@ -72,19 +78,20 @@ class Authentication extends ChangeNotifier {
     final GoogleSignInAuthentication googleSignInAuthentication =
         await googleSignInAccount.authentication;
 
-    final GoogleAuthCredential googleAuthCredential =
+    final OAuthCredential googleAuthCredential =
         GoogleAuthProvider.credential(
       accessToken: googleSignInAuthentication.accessToken,
       idToken: googleSignInAuthentication.idToken,
     );
 
-    UserCredential userCredential =
+    final UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(googleAuthCredential);
 
     if (userCredential.user != null) {
       final User user = userCredential.user;
 
       userUid = user.uid;
+      // ignore: avoid_print
       print(" Google User => $userUid");
     }
   }

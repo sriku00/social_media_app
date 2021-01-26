@@ -9,8 +9,9 @@ import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Services/userdata_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
+// ignore: always_specify_types
 final landingScreenWidgets =
-    ChangeNotifierProvider<LandingScreenWidgets>((ref) {
+    ChangeNotifierProvider<LandingScreenWidgets>((ProviderReference ref) {
   return LandingScreenWidgets();
 });
 
@@ -21,7 +22,7 @@ class LandingScreenWidgets extends ChangeNotifier {
     return Container(
       height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/login.png"),
         ),
@@ -35,10 +36,11 @@ class LandingScreenWidgets extends ChangeNotifier {
         top: 500,
         left: 20,
         child: Container(
-          constraints: BoxConstraints(maxHeight: 170),
+          constraints: const BoxConstraints(maxHeight: 170),
           child: RichText(
+            // ignore: always_specify_types
             text: TextSpan(children: [
-              TextSpan(
+              const TextSpan(
                 text: " ARe",
                 style: TextStyle(
                     color: Colors.white,
@@ -46,7 +48,7 @@ class LandingScreenWidgets extends ChangeNotifier {
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
               ),
-              TextSpan(
+              const TextSpan(
                 text: " YoU",
                 style: TextStyle(
                     fontFamily: "Poppins",
@@ -62,7 +64,7 @@ class LandingScreenWidgets extends ChangeNotifier {
                     fontSize: 35,
                     fontWeight: FontWeight.bold),
               ),
-              TextSpan(
+              const TextSpan(
                 text: " ?",
                 style: TextStyle(
                     color: Colors.white,
@@ -79,6 +81,7 @@ class LandingScreenWidgets extends ChangeNotifier {
   Widget buttonLanding(BuildContext context) {
     return Positioned(
       top: 630,
+      // ignore: sized_box_for_whitespace
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: Row(
@@ -91,17 +94,17 @@ class LandingScreenWidgets extends ChangeNotifier {
               child: Container(
                 height: 40,
                 width: 80,
+                decoration: BoxDecoration(
+                  border:
+                      Border.all(color: constantColors.yellowColor, width: 2),
+                  borderRadius: BorderRadius.circular(18),
+                ),
                 child: Center(
                     child: Icon(
                   EvaIcons.emailOutline,
                   color: constantColors.yellowColor,
                   size: 35,
                 )),
-                decoration: BoxDecoration(
-                  border:
-                      Border.all(color: constantColors.yellowColor, width: 2),
-                  borderRadius: BorderRadius.circular(18),
-                ),
               ),
             ),
             GestureDetector(
@@ -120,32 +123,32 @@ class LandingScreenWidgets extends ChangeNotifier {
               child: Container(
                 height: 40,
                 width: 80,
+                decoration: BoxDecoration(
+                  border: Border.all(color: constantColors.redColor, width: 2),
+                  borderRadius: BorderRadius.circular(18),
+                ),
                 child: Center(
                     child: Icon(
                   EvaIcons.googleOutline,
                   color: constantColors.redColor,
                   size: 35,
                 )),
-                decoration: BoxDecoration(
-                  border: Border.all(color: constantColors.redColor, width: 2),
-                  borderRadius: BorderRadius.circular(18),
-                ),
               ),
             ),
             GestureDetector(
               child: Container(
                 height: 40,
                 width: 80,
+                decoration: BoxDecoration(
+                  border: Border.all(color: constantColors.blueColor, width: 2),
+                  borderRadius: BorderRadius.circular(18),
+                ),
                 child: Center(
                     child: Icon(
                   EvaIcons.facebookOutline,
                   color: constantColors.blueColor,
                   size: 35,
                 )),
-                decoration: BoxDecoration(
-                  border: Border.all(color: constantColors.blueColor, width: 2),
-                  borderRadius: BorderRadius.circular(18),
-                ),
               ),
             ),
           ],
@@ -160,6 +163,7 @@ class LandingScreenWidgets extends ChangeNotifier {
       top: 750,
       left: 40,
       right: 20,
+      // ignore: avoid_unnecessary_containers
       child: Container(
         child: Column(
           children: [
@@ -183,7 +187,7 @@ class LandingScreenWidgets extends ChangeNotifier {
 
   // BottomSheet Widget
 
-  bottomSheet(BuildContext context) => showModalBottomSheet(
+  Future bottomSheet(BuildContext context) => showModalBottomSheet(
         context: context,
         builder: (context) => Container(
           height: MediaQuery.of(context).size.height * 0.5,
@@ -195,7 +199,7 @@ class LandingScreenWidgets extends ChangeNotifier {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 140),
+                padding: const EdgeInsets.symmetric(horizontal: 140),
                 child: Divider(
                   thickness: 4,
                   color: constantColors.whiteColor,
