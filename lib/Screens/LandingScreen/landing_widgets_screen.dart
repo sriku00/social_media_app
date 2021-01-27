@@ -6,7 +6,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
 import 'package:social_media_app/Screens/LandingScreen/landing_helpers_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
 // ignore: always_specify_types
@@ -78,8 +77,7 @@ class LandingScreenWidgets extends ChangeNotifier {
 
   // Bottom Widget of landing page
 
-
-   Widget buttonLanding(BuildContext context) {
+  Widget buttonLanding(BuildContext context) {
     return Positioned(
       top: 630,
       // ignore: sized_box_for_whitespace
@@ -90,7 +88,7 @@ class LandingScreenWidgets extends ChangeNotifier {
           children: [
             GestureDetector(
               onTap: () {
-                context.read(landingHelpers).bottomSheet(context);
+                bottomSheet(context);
               },
               child: Container(
                 height: 40,
@@ -185,4 +183,68 @@ class LandingScreenWidgets extends ChangeNotifier {
       ),
     );
   }
+
+  // email buttton bottom sheet
+
+  Future bottomSheet(BuildContext context) => showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width,
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          decoration: BoxDecoration(
+            color: constantColors.blueGreyColor,
+            borderRadius: BorderRadius.circular(40),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 140),
+                child: Divider(
+                  thickness: 4,
+                  color: constantColors.whiteColor,
+                ),
+              ),
+              //   context.read(userDataServices).passwordLessSignIn(context),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    elevation: 18,
+                    color: constantColors.blueColor,
+                    onPressed: () {
+                      //Todo:implement login
+                    },
+                    child: Text(
+                      "LogIn",
+                      style: TextStyle(
+                          color: constantColors.whiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  MaterialButton(
+                    elevation: 18,
+                    color: constantColors.redColor,
+                    onPressed: () {
+                      context.read(landingHelpers).signInSheet(context);
+                      //Todo:implement signIn function
+                    },
+                    child: Text(
+                      "SigIn",
+                      style: TextStyle(
+                          color: constantColors.whiteColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
 }

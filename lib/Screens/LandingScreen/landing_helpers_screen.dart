@@ -1,9 +1,9 @@
 // signIN Bottom sheet
-import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:social_media_app/Services/userdata_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
@@ -15,252 +15,107 @@ final landingHelpers = ChangeNotifierProvider<LandingHelpersScreen>((ref) {
 class LandingHelpersScreen extends ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
 
-  // BottomSheet Widget
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController conformPasswordController = TextEditingController();
 
-  Future bottomSheet(BuildContext context) => showModalBottomSheet(
-        isScrollControlled: true,
-        context: context,
-        builder: (context) => Container(
-          height: MediaQuery.of(context).size.height * 0.5,
-          width: MediaQuery.of(context).size.width,
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          decoration: BoxDecoration(
-            color: constantColors.blueGreyColor,
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 140),
-                child: Divider(
-                  thickness: 4,
-                  color: constantColors.whiteColor,
-                ),
-              ),
-              context.read(userDataServices).passwordLessSignIn(context),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MaterialButton(
-                    elevation: 18,
-                    color: constantColors.blueColor,
+// password less sign in widget
+
+  Widget passwordLessSignIn(BuildContext context) => SizedBox(
+      height: MediaQuery.of(context).size.height * 0.4,
+      // ignore: always_specify_types
+      child: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection("allUsers").snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView(
+              children:
+                  snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
+                return ListTile(
+                  trailing: IconButton(
                     onPressed: () {
-                      //Todo:implement login
-                      context.read(landingHelpers).loginSheet(context);
+                      //Todo:
                     },
-                    child: Text(
-                      "LogIn",
-                      style: TextStyle(
-                          color: constantColors.whiteColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                    icon: Icon(
+                      FontAwesomeIcons.trash,
+                      color: constantColors.redColor,
                     ),
                   ),
-                  MaterialButton(
-                    elevation: 18,
-                    color: constantColors.redColor,
-                    onPressed: () {
-                      //Todo:implement signIn function
-                      context.read(landingHelpers).signInSheet(context);
-                    },
-                    child: Text(
-                      "SigIn",
-                      style: TextStyle(
-                          color: constantColors.whiteColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
+                  leading: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(documentSnapshot.data()["userImage"]),
+                  ),
+                  subtitle: Text(
+                    documentSnapshot.data()["useremail"],
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  title: Text(
+                    documentSnapshot.data()["username"],
+                    style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold),
+                  ),
+                );
+              }).toList(),
+            );
+          }
+        },
+      ));
 
-  // signIN Bottom sheet
-  TextEditingController userNameTextController = TextEditingController();
-  TextEditingController emailTextController = TextEditingController();
-  TextEditingController passwordTextController = TextEditingController();
-  TextEditingController conformPasswordTextController = TextEditingController();
+// BottomSheet SigIn widget
 
-  Future signInSheet(BuildContext context) {
-    return showModalBottomSheet(
-        isScrollControlled: true,
+  signInSheet(BuildContext context) {
+    return showBottomSheet(
         context: context,
-        builder: (BuildContext context) {
+        builder: (context) {
           return Container(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
-            height: MediaQuery.of(context).size.height * 0.7,
-            decoration: BoxDecoration(
-                color: constantColors.darkColor,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20))),
+            decoration: const BoxDecoration(),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              // ignore: always_specify_types
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 150),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 150),
                   child: Divider(
                     thickness: 4,
-                    color: constantColors.whiteColor,
+                    color: Colors.white,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
                 ),
                 CircleAvatar(
                   backgroundColor: constantColors.redColor,
                   radius: 80,
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: TextFormField(
-                    style: kSmallTextStyle,
-                    controller: userNameTextController,
-                    decoration: const InputDecoration(
-                      hintText: "Enter Your Name",
-                    ),
+                TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    hintText: "FullName",
+                    hintStyle: kSmallTextStyle,
                   ),
                 ),
-                const SizedBox(
-                  height: 13,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    style: kSmallTextStyle,
-                    controller: emailTextController,
-                    decoration: const InputDecoration(
-                      hintText: "email",
-                    ),
+                TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    hintText: "FullName",
+                    hintStyle: kSmallTextStyle,
                   ),
                 ),
-                const SizedBox(
-                  height: 13,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: TextFormField(
-                    style: kSmallTextStyle,
-                    obscureText: true,
-                    controller: passwordTextController,
-                    decoration: const InputDecoration(
-                      hintText: "password",
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 13,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: TextFormField(
-                    style: kSmallTextStyle,
-                    obscureText: true,
-                    controller: conformPasswordTextController,
-                    decoration: const InputDecoration(
-                      hintText: "conform password",
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 13,
-                ),
-                MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  color: constantColors.blueColor,
-                  onPressed: () {},
-                  elevation: 20,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Text(
-                      "SignIn",
-                      style: kSmallTextStyle,
-                    ),
+                TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    hintText: "FullName",
+                    hintStyle: kSmallTextStyle,
                   ),
                 )
               ],
             ),
           );
         });
-  }
-  // logi Bottom Sheet //
-
-  // ignore: always_specify_types
-  Future loginSheet(BuildContext context) {
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      // ignore: always_specify_types
-      builder: (context) => Padding(
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.5,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            color: constantColors.blueGreyColor,
-            borderRadius: BorderRadius.circular(40),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            // ignore: always_specify_types
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 140),
-                child: Divider(
-                  thickness: 4,
-                  color: constantColors.whiteColor,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: TextFormField(
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                  decoration:
-                      const InputDecoration(hintText: "Enter your Name"),
-                  controller: userNameTextController,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: TextFormField(
-                  controller: passwordTextController,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              FloatingActionButton(
-                onPressed: () {},
-                child: const Text("sign"),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
