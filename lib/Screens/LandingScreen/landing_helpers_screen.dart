@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
@@ -14,10 +15,6 @@ final landingHelpers = ChangeNotifierProvider<LandingHelpersScreen>((ref) {
 
 class LandingHelpersScreen extends ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
-
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController conformPasswordController = TextEditingController();
 
 // password less sign in widget
 
@@ -69,53 +66,4 @@ class LandingHelpersScreen extends ChangeNotifier {
           }
         },
       ));
-
-// BottomSheet SigIn widget
-
-  signInSheet(BuildContext context) {
-    return showBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            decoration: const BoxDecoration(),
-            child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 150),
-                  child: Divider(
-                    thickness: 4,
-                    color: Colors.white,
-                  ),
-                ),
-                CircleAvatar(
-                  backgroundColor: constantColors.redColor,
-                  radius: 80,
-                ),
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: "FullName",
-                    hintStyle: kSmallTextStyle,
-                  ),
-                ),
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: "FullName",
-                    hintStyle: kSmallTextStyle,
-                  ),
-                ),
-                TextFormField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    hintText: "FullName",
-                    hintStyle: kSmallTextStyle,
-                  ),
-                )
-              ],
-            ),
-          );
-        });
-  }
 }

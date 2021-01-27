@@ -5,6 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
 import 'package:social_media_app/Screens/LandingScreen/landing_helpers_screen.dart';
+import 'package:social_media_app/Screens/loginScreen/login_screen.dart';
+import 'package:social_media_app/Screens/signUpScreen/signup_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 
@@ -208,7 +210,7 @@ class LandingScreenWidgets extends ChangeNotifier {
                   color: constantColors.whiteColor,
                 ),
               ),
-              //   context.read(userDataServices).passwordLessSignIn(context),
+              context.read(landingHelpers).passwordLessSignIn(context),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -217,6 +219,12 @@ class LandingScreenWidgets extends ChangeNotifier {
                     color: constantColors.blueColor,
                     onPressed: () {
                       //Todo:implement login
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: LogInScreen(),
+                              duration: Duration(milliseconds: 200),
+                              type: PageTransitionType.bottomToTop));
                     },
                     child: Text(
                       "LogIn",
@@ -230,7 +238,12 @@ class LandingScreenWidgets extends ChangeNotifier {
                     elevation: 18,
                     color: constantColors.redColor,
                     onPressed: () {
-                      context.read(landingHelpers).signInSheet(context);
+                      Navigator.push(
+                          context,
+                          PageTransition(
+                              child: SignUpScreen(),
+                              duration: Duration(milliseconds: 200),
+                              type: PageTransitionType.bottomToTop));
                       //Todo:implement signIn function
                     },
                     child: Text(

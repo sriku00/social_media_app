@@ -11,8 +11,8 @@ class MyTheme {
       backgroundColor: constantColors.darkColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
-        
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
         hintStyle: TextStyle(
             color: constantColors.whiteColor,
             fontSize: 16,
@@ -22,12 +22,6 @@ class MyTheme {
           borderSide: BorderSide(
             width: 2,
             color: constantColors.whiteColor,
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
-          borderSide: BorderSide(
-            color: constantColors.greyColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
