@@ -79,8 +79,12 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              Text(
+                "Password must be more than 5+",
+                style: TextStyle(color: Colors.white, fontSize: 12),
+              ),
               const SizedBox(
-                height: 13,
+                height: 9,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -98,11 +102,12 @@ class SignUpScreen extends StatelessWidget {
               ),
               FloatingActionButton(
                 onPressed: () {
-                  if (emailController.text.isNotEmpty) {
+                  if (emailController.text.isNotEmpty &&
+                      passwordController.text.isNotEmpty) {
                     context.read(authentication).createUserWithEmail(
                         emailController.text, passwordController.text);
                   } else {
-                    warning(context, "Please enter the vaild email");
+                    warning(context, "Please enter the email and password");
                   }
                 },
                 backgroundColor: constantColors.redColor,

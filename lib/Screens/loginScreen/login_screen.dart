@@ -18,7 +18,8 @@ class LogInScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 40),
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -66,11 +67,13 @@ class LogInScreen extends StatelessWidget {
               FloatingActionButton(
                 onPressed: () {
                   if (emailController.text.isNotEmpty) {
-                    context.read(authentication).loginUser(
-                        emailController.text, passwordController.text).whenComplete((){
-
-                        //  Navigator.pushReplacement(context, PageTransition(child: , type: ))
-                        });
+                    context
+                        .read(authentication)
+                        .loginUser(
+                            emailController.text, passwordController.text)
+                        .whenComplete(() {
+                      //  Navigator.pushReplacement(context, PageTransition(child: , type: ))
+                    });
                   } else {
                     warning(context, "Please enter the vaild email");
                   }

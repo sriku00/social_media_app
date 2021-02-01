@@ -27,7 +27,7 @@ class Authentication extends ChangeNotifier {
         final User user = userCredential.user;
         userUid = user.uid;
         // ignore: avoid_print
-        print(userUid.toString());
+        print(" Created User uid => $userUid");
       }
     } on FirebaseAuthException catch (e) {
       // ignore: avoid_print
