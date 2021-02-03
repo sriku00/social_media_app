@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:social_media_app/Screens/LandingScreen/landing_utils_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
@@ -7,6 +8,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // ignore: must_be_immutable
 class SignUpScreen extends StatelessWidget {
+  BuildContext context;
+  SignUpScreen({this.context});
   ConstantColors constantColors = ConstantColors();
 
   TextEditingController nameController = TextEditingController();
@@ -36,7 +39,9 @@ class SignUpScreen extends StatelessWidget {
           child: Column(
             children: [
               CircleAvatar(
-                backgroundColor: constantColors.redColor,
+                backgroundImage:
+                    FileImage(context.read(landingUtilsScreen).userAvatar),
+                backgroundColor: constantColors.transperant,
                 radius: 80,
               ),
               const SizedBox(

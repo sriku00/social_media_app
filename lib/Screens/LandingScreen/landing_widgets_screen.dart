@@ -238,12 +238,13 @@ class LandingScreenWidgets extends ChangeNotifier {
                     elevation: 18,
                     color: constantColors.redColor,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageTransition(
-                              child: SignUpScreen(),
-                              duration: Duration(milliseconds: 200),
-                              type: PageTransitionType.bottomToTop));
+                      context.read(landingHelpers).userAvatarSheet(context);
+                      // Navigator.push(
+                      //     context,
+                      //     PageTransition(
+                      //         child: SignUpScreen(),
+                      //         duration: Duration(milliseconds: 200),
+                      //         type: PageTransitionType.bottomToTop));
                       //Todo:implement signIn function
                     },
                     child: Text(
