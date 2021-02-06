@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:social_media_app/Screens/LandingScreen/landing_screen.dart';
-
+import 'package:social_media_app/Screens/LandingScreen/landing_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,14 +12,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    super.initState(); 
+    super.initState();
     Timer(
         const Duration(seconds: 1),
         () => Navigator.pushReplacement(
             context,
             // ignore: always_specify_types
             PageTransition(
-                child: LandingScreen(), type: PageTransitionType.bottomToTop)));
+                child: LandingPage(), type: PageTransitionType.bottomToTop)));
   }
 
   @override
