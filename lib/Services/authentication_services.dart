@@ -65,7 +65,7 @@ class Authentication extends ChangeNotifier {
   }
 
   // SignOut User
-  Future signOut() async {
+  Future signOut(BuildContext context) async {
     await _firebaseAuth.signOut();
   }
 
@@ -96,7 +96,7 @@ class Authentication extends ChangeNotifier {
   }
 
   // google SignOut
-  Future googleSignOut() async {
+  Future googleSignOut(BuildContext context) async {
     await _googleSignIn.signOut();
   }
 }

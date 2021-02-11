@@ -2,6 +2,9 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:eva_icons_flutter/icon_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
+import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
@@ -69,17 +72,33 @@ class LandingWidgets extends ChangeNotifier {
                   color: constantColors.yellowColor,
                 ),
               ),
-              Container(
-                width: 80,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: constantColors.blueColor, width: 2),
-                ),
-                child: Icon(
-                  EvaIcons.googleOutline,
-                  size: 30,
-                  color: constantColors.blueColor,
+              // google login implementation
+              GestureDetector(
+                onTap: () {
+                  context
+                      .read(authentication)
+                      .googleSignIn(context)
+                      .whenComplete(() {
+                    Navigator.pushReplacement(
+                        context,
+                        PageTransition(
+                            child: HomeScreen(),
+                            type: PageTransitionType.bottomToTop));
+                  });
+                },
+                child: Container(
+                  width: 80,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border:
+                        Border.all(color: constantColors.blueColor, width: 2),
+                  ),
+                  child: Icon(
+                    EvaIcons.googleOutline,
+                    size: 30,
+                    color: constantColors.blueColor,
+                  ),
                 ),
               ),
             ],
@@ -90,7 +109,7 @@ class LandingWidgets extends ChangeNotifier {
   // bottom Privacy policiy widget
 
   Widget footBarText(BuildContext context) => Positioned(
-        height: 750,
+        top: 750,
         left: 20,
         right: 20,
         child: Container(
@@ -110,4 +129,26 @@ class LandingWidgets extends ChangeNotifier {
           ),
         ),
       );
+
+// Model Bottom Sheet
+// Model Bottom Sheet Containing login And sign in
+  bottomLoginAdnSignSheet(BuildContext context) {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            )),
+            child: Column(
+              children: [],
+            ),
+          );
+        });
+  }
 }
