@@ -12,19 +12,17 @@ class LandingPage extends HookWidget {
     return Scaffold(
       backgroundColor: constantColors.whiteColor,
       body: Stack(
-        alignment: Alignment.center,
         children: [
-          bodyColor(context),
+          bodyColor(),
           provider.bodyImgae(context),
           provider.tagLineText(context),
+          provider.bottomIcons(context)
         ],
       ),
     );
   }
 
-  Widget bodyColor(BuildContext context) => Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+  bodyColor() => Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [
