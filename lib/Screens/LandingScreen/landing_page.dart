@@ -16,7 +16,8 @@ class LandingPage extends HookWidget {
           bodyColor(),
           provider.bodyImgae(context),
           provider.tagLineText(context),
-          provider.bottomIcons(context)
+          provider.bottomIcons(context),
+          provider.footBarText(context),
         ],
       ),
     );

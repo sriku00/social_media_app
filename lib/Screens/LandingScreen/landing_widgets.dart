@@ -86,4 +86,28 @@ class LandingWidgets extends ChangeNotifier {
           ),
         ),
       );
+
+  // bottom Privacy policiy widget
+
+  Widget footBarText(BuildContext context) => Positioned(
+        height: 750,
+        left: 20,
+        right: 20,
+        child: Container(
+          child: Column(
+            children: [
+              Text(
+                "By continuing you are agreed to the  Terms and conditions ",
+                style: kSmallTextStyle.copyWith(
+                    color: constantColors.greyColor, fontSize: 12),
+              ),
+              Text(
+                "of the SocialApp",
+                style: kSmallTextStyle.copyWith(
+                    color: constantColors.greyColor, fontSize: 12),
+              )
+            ],
+          ),
+        ),
+      );
 }
