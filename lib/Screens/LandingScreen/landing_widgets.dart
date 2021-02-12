@@ -175,7 +175,9 @@ class LandingWidgets extends ChangeNotifier {
                           style: ElevatedButton.styleFrom(
                               primary: constantColors.blueColor),
                           onPressed: () {
-                            //     Todo: implement the login fuctionality;
+                            context
+                                .read(landingBottomSheets)
+                                .loginAuthBottomSheet(context);
                           },
                           child: Text(
                             "Login",
@@ -187,10 +189,9 @@ class LandingWidgets extends ChangeNotifier {
                               primary: constantColors.yellowColor),
                           clipBehavior: Clip.none,
                           onPressed: () {
-                            //     Todo: implement the sigiN fuctionality;
                             context
                                 .read(landingBottomSheets)
-                                .emailBottomSheet(context);
+                                .sigInAuthBottomSheet(context);
                           },
                           child: Text(
                             "SigIn",
