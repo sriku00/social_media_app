@@ -10,7 +10,7 @@ class LandingPage extends HookWidget {
   Widget build(BuildContext context) {
     final provider = useProvider(landingWidgets);
     return Scaffold(
-      backgroundColor: constantColors.whiteColor,
+      backgroundColor: constantColors.darkColor,
       body: Stack(
         children: [
           bodyColor(),

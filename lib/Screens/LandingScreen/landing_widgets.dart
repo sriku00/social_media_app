@@ -58,18 +58,23 @@ class LandingWidgets extends ChangeNotifier {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                width: 80,
-                height: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border:
-                      Border.all(color: constantColors.yellowColor, width: 2),
-                ),
-                child: Icon(
-                  EvaIcons.emailOutline,
-                  size: 30,
-                  color: constantColors.yellowColor,
+              GestureDetector(
+                onTap: () {
+                  bottomLoginAdnSignSheet(context);
+                },
+                child: Container(
+                  width: 80,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border:
+                        Border.all(color: constantColors.yellowColor, width: 2),
+                  ),
+                  child: Icon(
+                    EvaIcons.emailOutline,
+                    size: 30,
+                    color: constantColors.yellowColor,
+                  ),
                 ),
               ),
               // google login implementation
@@ -134,6 +139,7 @@ class LandingWidgets extends ChangeNotifier {
 // Model Bottom Sheet Containing login And sign in
   bottomLoginAdnSignSheet(BuildContext context) {
     return showModalBottomSheet(
+        elevation: 15,
         isScrollControlled: true,
         context: context,
         builder: (context) {
@@ -141,12 +147,53 @@ class LandingWidgets extends ChangeNotifier {
             height: MediaQuery.of(context).size.height * 0.4,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
+                color: constantColors.darkColor,
                 borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            )),
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                )),
             child: Column(
-              children: [],
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 160),
+                  child: Divider(
+                    thickness: 5,
+                    color: constantColors.greyColor,
+                  ),
+                ),
+                SizedBox(),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 60),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: constantColors.blueColor),
+                        onPressed: () {
+                          //     Todo: implement the login fuctionality;
+                        },
+                        child: Text(
+                          "Login",
+                          style: kSmallTextStyle,
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: constantColors.yellowColor),
+                        clipBehavior: Clip.none,
+                        onPressed: () {
+                          //     Todo: implement the sigiN fuctionality;
+                        },
+                        child: Text(
+                          "SigIn",
+                          style: kSmallTextStyle.copyWith(color: Colors.black),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           );
         });
