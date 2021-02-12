@@ -12,7 +12,7 @@ class MyTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       inputDecorationTheme: InputDecorationTheme(
         contentPadding:
-            const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+             EdgeInsets.symmetric(vertical: 16, horizontal: 15),
         hintStyle: TextStyle(
             color: constantColors.whiteColor,
             fontSize: 16,
