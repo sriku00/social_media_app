@@ -1,3 +1,5 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:eva_icons_flutter/icon_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
@@ -68,9 +70,12 @@ class LandingBottomSheets extends ChangeNotifier {
 class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     return ListView(
       children: [
         Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 160),
@@ -79,11 +84,29 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            TextFormField(),
+            TextFormField(
+              controller: _emailController,
+              style: kSmallTextStyle,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                hintText: "Email",
+                prefixIcon: Icon(EvaIcons.email),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            TextFormField(),
+            TextFormField(
+              controller: _passwordController,
+              style: kSmallTextStyle,
+              textAlign: TextAlign.center,
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: " password",
+                prefixIcon: Icon(EvaIcons.lock),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -92,6 +115,11 @@ class LoginForm extends StatelessWidget {
               clipBehavior: Clip.none,
               onPressed: () {
                 //     Todo: implement the FirebaseAuthLogin fuctionality;
+
+                if (_emailController != null) {}
+                context
+                    .read(authentication)
+                    .loginUser(_emailController.text, _passwordController.text);
               },
               child: Text(
                 "LogIn",
@@ -114,6 +142,10 @@ class SignInForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+    TextEditingController _nameController = TextEditingController();
+    TextEditingController _confromPasswordController = TextEditingController();
     return ListView(
       children: [
         Column(
@@ -135,19 +167,101 @@ class SignInForm extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            TextFormField(),
+            TextFormField(
+              controller: _nameController,
+              style: kSmallTextStyle,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: "UserName",
+                prefixIcon: Icon(
+                  EvaIcons.email,
+                  color: constantColors.yellowColor,
+                ),
+              ).copyWith(
+                focusColor: constantColors.yellowColor,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: constantColors.yellowColor,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            TextFormField(),
+            TextFormField(
+              controller: _emailController,
+              style: kSmallTextStyle,
+              textAlign: TextAlign.center,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                hintText: "Email",
+                prefixIcon: Icon(
+                  EvaIcons.person,
+                  color: constantColors.yellowColor,
+                ),
+              ).copyWith(
+                focusColor: constantColors.yellowColor,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: constantColors.yellowColor,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            TextFormField(),
+            TextFormField(
+              controller: _passwordController,
+              style: kSmallTextStyle,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: "Password",
+                prefixIcon: Icon(
+                  EvaIcons.lock,
+                  color: constantColors.yellowColor,
+                ),
+              ).copyWith(
+                focusColor: constantColors.yellowColor,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: constantColors.yellowColor,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            TextFormField(),
+            TextFormField(
+              obscureText: true,
+              controller: _confromPasswordController,
+              style: kSmallTextStyle,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: " re-Password",
+                prefixIcon: Icon(
+                  EvaIcons.lock,
+                  color: constantColors.yellowColor,
+                ),
+              ).copyWith(
+                focusColor: constantColors.yellowColor,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: constantColors.yellowColor,
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
