@@ -91,7 +91,19 @@ class LoginForm extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 hintText: "Email",
-                prefixIcon: Icon(EvaIcons.email),
+                prefixIcon: Icon(
+                  EvaIcons.email,
+                  color: Colors.blueAccent,
+                ),
+              ).copyWith(
+                focusColor: Colors.blueAccent,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: Colors.blueAccent,
+                  ),
+                ),
               ),
             ),
             SizedBox(
@@ -104,7 +116,19 @@ class LoginForm extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: " password",
-                prefixIcon: Icon(EvaIcons.lock),
+                prefixIcon: Icon(
+                  EvaIcons.lock,
+                  color: Colors.blueAccent,
+                ),
+              ).copyWith(
+                focusColor: Colors.blueAccent,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(
+                    width: 4,
+                    color: Colors.blueAccent,
+                  ),
+                ),
               ),
             ),
             SizedBox(

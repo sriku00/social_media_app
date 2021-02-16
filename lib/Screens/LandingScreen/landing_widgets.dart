@@ -1,11 +1,13 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:eva_icons_flutter/icon_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
 import 'package:social_media_app/Screens/LandingScreen/landing_bottomsheets.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
+import 'package:social_media_app/Services/user_login_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
@@ -165,7 +167,7 @@ class LandingWidgets extends ChangeNotifier {
                       color: constantColors.greyColor,
                     ),
                   ),
-                  SizedBox(),
+                  context.read(userLoginServices).passwordLessSign(context),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 60),
                     child: Row(
