@@ -2,7 +2,10 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:eva_icons_flutter/icon_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
+import 'package:social_media_app/Services/firebase_storage_services.dart';
+import 'package:social_media_app/Services/image_picker_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
 
@@ -12,6 +15,128 @@ final landingBottomSheets = ChangeNotifierProvider<LandingBottomSheets>((ref) {
 
 class LandingBottomSheets extends ChangeNotifier {
   final ConstantColors constantColors = ConstantColors();
+
+  // Image picker Bottom sheet
+
+  imagePickerBottomSheet(BuildContext context) => showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.2,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: constantColors.blueGreyColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+              )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
+                clipBehavior: Clip.none,
+                onPressed: () {
+                  context
+                      .read(imagePickerServices)
+                      .pickUserAvatar(context, ImageSource.camera)
+                      .whenComplete(() {
+                    Navigator.pop(context);
+                    userAvatarPreviewSheet(context);
+                  });
+                },
+                child: Text(
+                  "Camera",
+                  style: kSmallTextStyle.copyWith(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.yellowAccent),
+                clipBehavior: Clip.none,
+                onPressed: () {
+                  context
+                      .read(imagePickerServices)
+                      .pickUserAvatar(context, ImageSource.gallery)
+                      .whenComplete(() {
+                    Navigator.pop(context);
+                    userAvatarPreviewSheet(context);
+                  });
+                },
+                child: Text(
+                  "Gallery",
+                  style: kSmallTextStyle.copyWith(color: Colors.black),
+                ),
+              )
+            ],
+          ),
+        );
+      });
+
+  // usesrAvatar preview BottomSheet
+
+  userAvatarPreviewSheet(BuildContext context) => showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.4,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: constantColors.blueGreyColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+              )),
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundColor: constantColors.transperant,
+                backgroundImage:
+                    FileImage(context.read(imagePickerServices).userAvatar),
+                radius: 70,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
+                    clipBehavior: Clip.none,
+                    onPressed: () {
+                      imagePickerBottomSheet(context);
+                    },
+                    child: Text(
+                      "back",
+                      style: kSmallTextStyle.copyWith(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(primary: Colors.yellowAccent),
+                    clipBehavior: Clip.none,
+                    onPressed: () {
+                      context
+                          .read(firebaseStorageSErvices)
+                          .uploadUserAvatar(context);
+                    },
+                    child: Text(
+                      "Confirm",
+                      style: kSmallTextStyle.copyWith(color: Colors.black),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        );
+      });
 
   // Warning Bottom sheet
 
@@ -28,6 +153,12 @@ class LandingBottomSheets extends ChangeNotifier {
                 style: kSmallTextStyle,
               ),
             ),
+            decoration: BoxDecoration(
+                color: constantColors.transperant,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                )),
           );
         });
   }
@@ -212,7 +343,9 @@ class SignInForm extends StatelessWidget {
               height: 20,
             ),
             CircleAvatar(
-              backgroundColor: constantColors.redColor,
+              backgroundColor: constantColors.transperant,
+              backgroundImage:
+                  FileImage(context.read(imagePickerServices).userAvatar),
               radius: 70,
             ),
             SizedBox(

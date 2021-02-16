@@ -32,6 +32,7 @@ class LandingWidgets extends ChangeNotifier {
     );
   }
 
+
   // TagLIne Widget
 
   Widget tagLineText(BuildContext context) => Positioned(
@@ -193,7 +194,7 @@ class LandingWidgets extends ChangeNotifier {
                           onPressed: () {
                             context
                                 .read(landingBottomSheets)
-                                .sigInAuthBottomSheet(context);
+                                .imagePickerBottomSheet(context);
                           },
                           child: Text(
                             "SigIn",
