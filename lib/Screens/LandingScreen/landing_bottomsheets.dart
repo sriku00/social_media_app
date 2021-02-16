@@ -12,6 +12,26 @@ final landingBottomSheets = ChangeNotifierProvider<LandingBottomSheets>((ref) {
 
 class LandingBottomSheets extends ChangeNotifier {
   final ConstantColors constantColors = ConstantColors();
+
+  // Warning Bottom sheet
+
+  warningBottomSheet(BuildContext context, String warning) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Text(
+                warning,
+                style: kSmallTextStyle,
+              ),
+            ),
+          );
+        });
+  }
+
   // email and password signUp sheet
   sigInAuthBottomSheet(BuildContext context) {
     return showModalBottomSheet(
@@ -66,6 +86,8 @@ class LandingBottomSheets extends ChangeNotifier {
         });
   }
 }
+
+// LoginForm Widget
 
 class LoginForm extends StatelessWidget {
   @override
@@ -140,10 +162,14 @@ class LoginForm extends StatelessWidget {
               onPressed: () {
                 //     Todo: implement the FirebaseAuthLogin fuctionality;
 
-                if (_emailController != null) {}
-                context
-                    .read(authentication)
-                    .loginUser(_emailController.text, _passwordController.text);
+                if (_emailController.text.isNotEmpty &&
+                    _passwordController.text.isNotEmpty) {
+                  context.read(authentication).loginUser(
+                      _emailController.text, _passwordController.text);
+                } else {
+                  context.read(landingBottomSheets).warningBottomSheet(
+                      context, "Enter email & password correctly");
+                }
               },
               child: Text(
                 "LogIn",
@@ -157,6 +183,7 @@ class LoginForm extends StatelessWidget {
   }
 }
 
+// SignINForm Sheet
 class SignInForm extends StatelessWidget {
   const SignInForm(
       {Key key, @required this.constantColors, @required BuildContext context})
@@ -241,6 +268,7 @@ class SignInForm extends StatelessWidget {
               height: 20,
             ),
             TextFormField(
+              obscureText: true,
               controller: _passwordController,
               style: kSmallTextStyle,
               textAlign: TextAlign.center,
@@ -295,6 +323,15 @@ class SignInForm extends StatelessWidget {
               clipBehavior: Clip.none,
               onPressed: () {
                 //     Todo: implement the FirebaseAuthsigiN fuctionality;
+                if (_emailController.text.isNotEmpty &&
+                    _passwordController.text.isNotEmpty &&
+                    _nameController.text.isNotEmpty) {
+                  context.read(authentication).createUserWithEmail(
+                      _emailController.text, _passwordController.text);
+                } else {
+                  context.read(landingBottomSheets).warningBottomSheet(
+                      context, "Enter email & password correctly");
+                }
               },
               child: Text(
                 "SigIn",
