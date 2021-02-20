@@ -84,7 +84,7 @@ class LandingBottomSheets extends ChangeNotifier {
       context: context,
       builder: (context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.3,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: constantColors.blueGreyColor,
@@ -93,7 +93,11 @@ class LandingBottomSheets extends ChangeNotifier {
                 topRight: Radius.circular(40),
               )),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(
+                height: 10,
+              ),
               CircleAvatar(
                 backgroundColor: constantColors.transperant,
                 backgroundImage:
@@ -104,7 +108,7 @@ class LandingBottomSheets extends ChangeNotifier {
                 height: 20,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
@@ -498,6 +502,7 @@ class SignInForm extends StatelessWidget {
                           context.read(imagePickerServices).getUserAvatarUrl
                     });
                     print("creatin user Collecion done");
+                    context.read(firebaseStorageServices).initUserData(context);
                   }).whenComplete(() {
                     Navigator.pushReplacement(
                         context,
