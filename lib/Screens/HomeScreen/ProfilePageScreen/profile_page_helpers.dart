@@ -29,11 +29,14 @@ class ProfilePageHelpers extends ChangeNotifier {
               children: [
                 GestureDetector(
                   onTap: () {},
-                  child: CircleAvatar(
-                    backgroundColor: constantColors.transperant,
-                    backgroundImage:
-                        NetworkImage(snapshot.data.data()["userImage"]),
-                    radius: 58,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      backgroundColor: constantColors.transperant,
+                      backgroundImage:
+                          NetworkImage(snapshot.data.data()["userImage"]),
+                      radius: 58,
+                    ),
                   ),
                 ),
                 Padding(
@@ -41,7 +44,7 @@ class ProfilePageHelpers extends ChangeNotifier {
                   child: Text(
                     snapshot.data.data()["userName"],
                     style: kSmallTextStyle.copyWith(
-                        color: constantColors.whiteColor, fontSize: 16),
+                        color: constantColors.whiteColor, fontSize: 20),
                   ),
                 ),
                 Padding(
@@ -52,6 +55,7 @@ class ProfilePageHelpers extends ChangeNotifier {
                       Icon(
                         EvaIcons.emailOutline,
                         color: constantColors.yellowColor,
+                        size: 16,
                       ),
                       Text(
                         snapshot.data.data()["userEmail"],
@@ -72,69 +76,82 @@ class ProfilePageHelpers extends ChangeNotifier {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: constantColors.darkColor,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Column(
-                        children: [
-                          Text(
-                            "0",
-                            style: kSmallTextStyle.copyWith(
-                                fontSize: 28, color: constantColors.whiteColor),
-                          ),
-                          Text(
-                            "Followers",
-                            style: kSmallTextStyle.copyWith(
-                                fontSize: 12, color: constantColors.whiteColor),
-                          ),
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: constantColors.darkColor,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Column(
+                          children: [
+                            Text(
+                              "0",
+                              style: kSmallTextStyle.copyWith(
+                                  fontSize: 28,
+                                  color: constantColors.whiteColor),
+                            ),
+                            Text(
+                              "Followers",
+                              style: kSmallTextStyle.copyWith(
+                                  fontSize: 12,
+                                  color: constantColors.whiteColor),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: constantColors.darkColor,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Column(
-                        children: [
-                          Text(
-                            "0",
-                            style: kSmallTextStyle.copyWith(
-                                fontSize: 28, color: constantColors.whiteColor),
-                          ),
-                          Text(
-                            "Following",
-                            style: kSmallTextStyle.copyWith(
-                                fontSize: 12, color: constantColors.whiteColor),
-                          ),
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0, left: 12),
+                      child: Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: constantColors.darkColor,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Column(
+                          children: [
+                            Text(
+                              "0",
+                              style: kSmallTextStyle.copyWith(
+                                  fontSize: 28,
+                                  color: constantColors.whiteColor),
+                            ),
+                            Text(
+                              "Following",
+                              style: kSmallTextStyle.copyWith(
+                                  fontSize: 12,
+                                  color: constantColors.whiteColor),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   ],
                 ),
-                Container(
-                  height: 80,
-                  width: 80,
-                  decoration: BoxDecoration(
-                      color: constantColors.darkColor,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Column(
-                    children: [
-                      Text(
-                        "0",
-                        style: kSmallTextStyle.copyWith(
-                            fontSize: 28, color: constantColors.whiteColor),
-                      ),
-                      Text(
-                        "Postes",
-                        style: kSmallTextStyle.copyWith(
-                            fontSize: 12, color: constantColors.whiteColor),
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Container(
+                    height: 80,
+                    width: 80,
+                    decoration: BoxDecoration(
+                        color: constantColors.darkColor,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Column(
+                      children: [
+                        Text(
+                          "0",
+                          style: kSmallTextStyle.copyWith(
+                              fontSize: 28, color: constantColors.whiteColor),
+                        ),
+                        Text(
+                          "Postes",
+                          style: kSmallTextStyle.copyWith(
+                              fontSize: 12, color: constantColors.whiteColor),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -144,10 +161,27 @@ class ProfilePageHelpers extends ChangeNotifier {
       ),
     );
   }
+// Widget Divider
 
-  // profile page Body Widget
+  Widget dividerWidget(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        height: 25,
+        width: 250,
+        child: Divider(
+          thickness: 2,
+          color: constantColors.whiteColor,
+        ),
+      ),
+    );
+  }
+  // profile page Middle part Widget
 
-  // Widget profilePageBodyWidget(BuildContext context) {
-  //   return
-  // }
+  Widget middleProfile(BuildContext context, DocumentSnapshot snapshot) {
+    return Column(
+      children: [
+        
+      ],
+    );
+  }
 }

@@ -77,6 +77,7 @@ class ProfilePage extends StatelessWidget {
                       context
                           .read(profilePageHelpers)
                           .profilepageHeader(context, snapshot),
+                      context.read(profilePageHelpers).dividerWidget(context),
                     ],
                   );
                 }
