@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
+import 'package:social_media_app/Screens/HomeScreen/HomePageScreen/home_screen.dart';
+
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Services/firebase_storage_services.dart';
 import 'package:social_media_app/Services/image_picker_services.dart';
@@ -299,8 +300,17 @@ class LoginForm extends StatelessWidget {
 
                 if (_emailController.text.isNotEmpty &&
                     _passwordController.text.isNotEmpty) {
-                  context.read(authentication).loginUser(
-                      _emailController.text, _passwordController.text);
+                  context
+                      .read(authentication)
+                      .loginUser(
+                          _emailController.text, _passwordController.text)
+                      .whenComplete(() {
+                    Navigator.pushReplacement(
+                        context,
+                        PageTransition(
+                            child: HomeScreen(),
+                            type: PageTransitionType.bottomToTop));
+                  });
                 } else {
                   context.read(landingBottomSheets).warningBottomSheet(
                       context, "Enter email & password correctly");
