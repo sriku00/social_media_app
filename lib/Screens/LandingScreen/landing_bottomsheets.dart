@@ -126,7 +126,7 @@ class LandingBottomSheets extends ChangeNotifier {
                     clipBehavior: Clip.none,
                     onPressed: () {
                       context
-                          .read(firebaseStorageSErvices)
+                          .read(firebaseStorageServices)
                           .uploadUserAvatar(context);
 
                       sigInAuthBottomSheet(context);
@@ -305,11 +305,17 @@ class LoginForm extends StatelessWidget {
                       .loginUser(
                           _emailController.text, _passwordController.text)
                       .whenComplete(() {
-                    Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                            child: HomeScreen(),
-                            type: PageTransitionType.bottomToTop));
+                    context
+                        .read(firebaseStorageServices)
+                        .initUserData(context)
+                        .whenComplete(() {
+                      Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                              child: HomeScreen(),
+                              type: PageTransitionType.bottomToTop,
+                              duration: Duration(milliseconds: 500)));
+                    });
                   });
                 } else {
                   context.read(landingBottomSheets).warningBottomSheet(
@@ -483,7 +489,7 @@ class SignInForm extends StatelessWidget {
 
                     print("creating Collection/,,,,");
                     context
-                        .read(firebaseStorageSErvices)
+                        .read(firebaseStorageServices)
                         .uploadUserData(context, {
                       "userUid": context.read(authentication).getUserUid,
                       "userEmail": _emailController.text,

@@ -3,17 +3,25 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Services/image_picker_services.dart';
 
-final firebaseStorageSErvices =
+final firebaseStorageServices =
     ChangeNotifierProvider<FirebaseStorageServices>((ref) {
   return FirebaseStorageServices();
 });
 
 class FirebaseStorageServices extends ChangeNotifier {
   UploadTask imageUploadTask;
+
+  String initUserEmail;
+  String initUserName;
+  String initUserImage;
+
+  String get getInitUserName => initUserName;
+  String get getInitUserEmail => initUserEmail;
+  String get getInitUserImage => initUserImage;
 
   // user Avatar uPload function here
 
@@ -42,5 +50,27 @@ class FirebaseStorageServices extends ChangeNotifier {
           .doc(context.read(authentication).getUserUid)
           .set(data);
     } catch (e) {}
+  }
+
+  Future initUserData(BuildContext context) async {
+    try {
+      return await FirebaseFirestore.instance
+          .collection("users")
+          .doc(context.read(authentication).getUserUid)
+          .get()
+          .then((doc) {
+        print("fetching user data");
+        initUserEmail = doc.data()["userEmail"];
+        initUserName = doc.data()["userName"];
+        initUserImage = doc.data()["userImage"];
+        print(initUserEmail);
+        print(initUserName);
+        print(initUserImage);
+
+        notifyListeners();
+      });
+    } catch (e) {
+      e.message();
+    }
   }
 }
