@@ -14,7 +14,7 @@ class ImagePickerServices extends ChangeNotifier {
   File userAvatar;
   File get getUserAvatar => userAvatar;
   String userAvatarUrl;
-  String get getUserAVatar => userAvatarUrl;
+  String get getUserAvatarUrl => userAvatarUrl;
 
   Future pickUserAvatar(BuildContext context, ImageSource imageSource) async {
     final pickuserAvater = await picker.getImage(source: imageSource);

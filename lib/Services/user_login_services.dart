@@ -17,7 +17,7 @@ class UserLoginServices extends ChangeNotifier {
         height: MediaQuery.of(context).size.height * 0.3,
         width: MediaQuery.of(context).size.width,
         child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection("allUsers").snapshots(),
+          stream: FirebaseFirestore.instance.collection("users").snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -27,10 +27,12 @@ class UserLoginServices extends ChangeNotifier {
               );
             } else {
               return ListView(
+                physics: BouncingScrollPhysics(),
                 children:
                     snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
                   return ListTile(
                     leading: CircleAvatar(
+                      backgroundColor: Colors.transparent,
                       backgroundImage:
                           NetworkImage(documentSnapshot.data()["userImage"]),
                     ),
@@ -40,7 +42,7 @@ class UserLoginServices extends ChangeNotifier {
                     ),
                     subtitle: Text(
                       documentSnapshot.data()["userEmail"],
-                      style: kSmallTextStyle.copyWith(fontSize: 8),
+                      style: kSmallTextStyle.copyWith(fontSize: 12),
                     ),
                     trailing: IconButton(
                       onPressed: () {},

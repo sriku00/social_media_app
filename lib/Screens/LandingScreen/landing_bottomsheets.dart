@@ -3,6 +3,8 @@ import 'package:eva_icons_flutter/icon_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:social_media_app/Screens/HomeScreen/home_screen.dart';
 import 'package:social_media_app/Services/authentication_services.dart';
 import 'package:social_media_app/Services/firebase_storage_services.dart';
 import 'package:social_media_app/Services/image_picker_services.dart';
@@ -125,6 +127,8 @@ class LandingBottomSheets extends ChangeNotifier {
                       context
                           .read(firebaseStorageSErvices)
                           .uploadUserAvatar(context);
+
+                      sigInAuthBottomSheet(context);
                     },
                     child: Text(
                       "Confirm",
@@ -459,8 +463,32 @@ class SignInForm extends StatelessWidget {
                 if (_emailController.text.isNotEmpty &&
                     _passwordController.text.isNotEmpty &&
                     _nameController.text.isNotEmpty) {
-                  context.read(authentication).createUserWithEmail(
-                      _emailController.text, _passwordController.text);
+                  context
+                      .read(authentication)
+                      .createUserWithEmail(
+                          _emailController.text, _passwordController.text)
+                      .whenComplete(() {
+                    // Todo : Navigation to homePage
+                    // Todo: Upload user data to cloud fierstore
+
+                    print("creating Collection/,,,,");
+                    context
+                        .read(firebaseStorageSErvices)
+                        .uploadUserData(context, {
+                      "userUid": context.read(authentication).getUserUid,
+                      "userEmail": _emailController.text,
+                      "userName": _nameController.text,
+                      "userImage":
+                          context.read(imagePickerServices).getUserAvatarUrl
+                    });
+                    print("creatin user Collecion done");
+                  }).whenComplete(() {
+                    Navigator.pushReplacement(
+                        context,
+                        PageTransition(
+                            child: HomeScreen(),
+                            type: PageTransitionType.bottomToTop));
+                  });
                 } else {
                   context.read(landingBottomSheets).warningBottomSheet(
                       context, "Enter email & password correctly");
