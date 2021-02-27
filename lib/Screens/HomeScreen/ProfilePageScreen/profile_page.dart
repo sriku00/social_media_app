@@ -78,6 +78,12 @@ class ProfilePage extends StatelessWidget {
                           .read(profilePageHelpers)
                           .profilepageHeader(context, snapshot),
                       context.read(profilePageHelpers).dividerWidget(context),
+                      context
+                          .read(profilePageHelpers)
+                          .middleProfile(context, snapshot),
+                      context
+                          .read(profilePageHelpers)
+                          .profilepageBottomWidget(context),
                     ],
                   );
                 }
