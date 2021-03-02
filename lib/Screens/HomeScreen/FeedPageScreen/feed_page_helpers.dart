@@ -9,7 +9,7 @@ final feedPageHelpers = ChangeNotifierProvider<FeedPageHelpers>((ref) {
   return FeedPageHelpers();
 });
 
-class FeedPageHelpers extends ChangeNotifier {
+class FeedPageHelpers with ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
   // AppBar Wiget
 

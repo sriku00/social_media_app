@@ -16,7 +16,7 @@ final landingWidgets = ChangeNotifierProvider<LandingWidgets>((ref) {
   return LandingWidgets();
 });
 
-class LandingWidgets extends ChangeNotifier {
+class LandingWidgets with ChangeNotifier {
   final ConstantColors constantColors = ConstantColors();
 
   // the image Body widget

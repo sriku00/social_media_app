@@ -8,9 +8,7 @@ class FeedPage extends StatelessWidget {
     return Scaffold(
       appBar: context.read(feedPageHelpers).feedPageAppBarWidget(context),
       drawer: Drawer(),
-      body: Center(
-        child: Text("feedpage"),
-      ),
+      body: context.read(feedPageHelpers).feedPageBody(context),
     );
   }
 }

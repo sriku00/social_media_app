@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,8 +11,15 @@ final postUploadUtils = ChangeNotifierProvider<PostUploadUtils>((ref) {
   return PostUploadUtils();
 });
 
-class PostUploadUtils extends ChangeNotifier {
+class PostUploadUtils with ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
+
+  File uploadPostImage;
+
+  File get getuploadPostImage => uploadPostImage;
+
+  String uploadPostImageUrl;
+  String get getuploadPostImageUrl => uploadPostImageUrl;
 
   // Image Upload Widget
 

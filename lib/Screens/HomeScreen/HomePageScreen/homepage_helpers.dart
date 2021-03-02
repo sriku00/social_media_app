@@ -9,7 +9,7 @@ final homePageHelpers = ChangeNotifierProvider<HomePageHelpers>((ref) {
   return HomePageHelpers();
 });
 
-class HomePageHelpers extends ChangeNotifier {
+class HomePageHelpers with ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
   Widget bottomNavBar(
       int index, PageController pageController, BuildContext context) {

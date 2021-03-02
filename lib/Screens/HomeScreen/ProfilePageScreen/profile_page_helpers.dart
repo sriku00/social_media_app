@@ -11,7 +11,7 @@ final profilePageHelpers = ChangeNotifierProvider<ProfilePageHelpers>((ref) {
   return ProfilePageHelpers();
 });
 
-class ProfilePageHelpers extends ChangeNotifier {
+class ProfilePageHelpers with ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
   // header widget
 

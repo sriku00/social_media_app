@@ -16,7 +16,7 @@ final landingBottomSheets = ChangeNotifierProvider<LandingBottomSheets>((ref) {
   return LandingBottomSheets();
 });
 
-class LandingBottomSheets extends ChangeNotifier {
+class LandingBottomSheets with ChangeNotifier {
   final ConstantColors constantColors = ConstantColors();
 
   // Image picker Bottom sheet
