@@ -1,2 +1,6 @@
 {
+    "workbench.preferredLightColorTheme": "Black",
+    "workbench.fontAliasing": "antialiased",
+    "window.autoDetectColorScheme": true
+  
 }
