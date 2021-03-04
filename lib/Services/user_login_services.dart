@@ -29,19 +29,19 @@ class UserLoginServices extends ChangeNotifier {
               return ListView(
                 physics: BouncingScrollPhysics(),
                 children:
-                    snapshot.data.docs.map((DocumentSnapshot documentSnapshot) {
+                    snapshot.data!.docs.map((DocumentSnapshot documentSnapshot) {
                   return ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.transparent,
                       backgroundImage:
-                          NetworkImage(documentSnapshot.data()["userImage"]),
+                          NetworkImage(documentSnapshot.data()!["userImage"]),
                     ),
                     title: Text(
-                      documentSnapshot.data()["userName"],
+                      documentSnapshot.data()!["userName"],
                       style: kSmallTextStyle,
                     ),
                     subtitle: Text(
-                      documentSnapshot.data()["userEmail"],
+                      documentSnapshot.data()!["userEmail"],
                       style: kSmallTextStyle.copyWith(fontSize: 12),
                     ),
                     trailing: IconButton(

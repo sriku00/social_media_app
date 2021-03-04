@@ -13,23 +13,23 @@ final firebaseStorageServices =
 });
 
 class FirebaseStorageServices extends ChangeNotifier {
-  UploadTask imageUploadTask;
+  late UploadTask imageUploadTask;
 
-  String initUserEmail;
-  String initUserName;
-  String initUserImage;
+  String? initUserEmail;
+  String? initUserName;
+  String? initUserImage;
 
-  String get getInitUserName => initUserName;
-  String get getInitUserEmail => initUserEmail;
-  String get getInitUserImage => initUserImage;
+  String? get getInitUserName => initUserName;
+  String? get getInitUserEmail => initUserEmail;
+  String? get getInitUserImage => initUserImage;
 
   // user Avatar uPload function here
 
   Future uploadUserAvatar(BuildContext context) async {
     Reference imageReference = FirebaseStorage.instance.ref().child(
-        "userProfileAvatar/${context.read(imagePickerServices).getUserAvatar.path}/${TimeOfDay.now()}");
+        "userProfileAvatar/${context.read(imagePickerServices).getUserAvatar!.path}/${TimeOfDay.now()}");
     imageUploadTask =
-        imageReference.putFile(context.read(imagePickerServices).getUserAvatar);
+        imageReference.putFile(context.read(imagePickerServices).getUserAvatar!);
 
     await imageUploadTask.whenComplete(() {
       print("image => user Image Uploaded");
@@ -60,9 +60,9 @@ class FirebaseStorageServices extends ChangeNotifier {
           .get()
           .then((doc) {
         print("fetching user data");
-        initUserEmail = doc.data()["userEmail"];
-        initUserName = doc.data()["userName"];
-        initUserImage = doc.data()["userImage"];
+        initUserEmail = doc.data()!["userEmail"];
+        initUserName = doc.data()!["userName"];
+        initUserImage = doc.data()!["userImage"];
         print(initUserEmail);
         print(initUserName);
         print(initUserImage);
@@ -70,7 +70,7 @@ class FirebaseStorageServices extends ChangeNotifier {
         notifyListeners();
       });
     } catch (e) {
-      e.message();
+     
     }
   }
 }

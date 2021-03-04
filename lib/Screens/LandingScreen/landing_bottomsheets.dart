@@ -100,7 +100,7 @@ class LandingBottomSheets with ChangeNotifier {
               CircleAvatar(
                 backgroundColor: constantColors.transperant,
                 backgroundImage:
-                    FileImage(context.read(imagePickerServices).userAvatar),
+                    FileImage(context.read(imagePickerServices).userAvatar!),
                 radius: 70,
               ),
               SizedBox(
@@ -340,7 +340,7 @@ class LoginForm extends StatelessWidget {
 // SignINForm Sheet
 class SignInForm extends StatelessWidget {
   const SignInForm(
-      {Key key, @required this.constantColors, @required BuildContext context})
+      {Key? key, required this.constantColors, required BuildContext context})
       : super(key: key);
 
   final ConstantColors constantColors;
@@ -368,7 +368,7 @@ class SignInForm extends StatelessWidget {
             CircleAvatar(
               backgroundColor: constantColors.transperant,
               backgroundImage:
-                  FileImage(context.read(imagePickerServices).userAvatar),
+                  FileImage(context.read(imagePickerServices).userAvatar!),
               radius: 70,
             ),
             SizedBox(

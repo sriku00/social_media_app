@@ -11,10 +11,10 @@ final imagePickerServices = ChangeNotifierProvider<ImagePickerServices>((ref) {
 
 class ImagePickerServices extends ChangeNotifier {
   final picker = ImagePicker();
-  File userAvatar;
-  File get getUserAvatar => userAvatar;
-  String userAvatarUrl;
-  String get getUserAvatarUrl => userAvatarUrl;
+  File? userAvatar;
+  File? get getUserAvatar => userAvatar;
+  String? userAvatarUrl;
+  String? get getUserAvatarUrl => userAvatarUrl;
 
   Future pickUserAvatar(BuildContext context, ImageSource imageSource) async {
     final pickuserAvater = await picker.getImage(source: imageSource);
@@ -22,7 +22,7 @@ class ImagePickerServices extends ChangeNotifier {
     pickuserAvater == null
         ? print("picker userAvatar")
         : userAvatar = File(pickuserAvater.path);
-    print(userAvatar.path);
+    print(userAvatar!.path);
 
     userAvatar != null
         ? context.read(landingBottomSheets).userAvatarPreviewSheet(context)

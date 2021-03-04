@@ -11,20 +11,19 @@ class Authentication extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  String userUid;
-  String get getUserUid => userUid;
+  String? userUid;
+  String? get getUserUid => userUid;
 
   // creating Users with email and password
 
   Future createUserWithEmail(String email, String password) async {
     try {
-      final UserCredential userCredential =
-          await _firebaseAuth.createUserWithEmailAndPassword(
+      final UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user != null) {
-        final User user = userCredential.user;
+        final User user = userCredential.user!;
         userUid = user.uid;
         // ignore: avoid_print
         print(" Created User uid => $userUid");
@@ -43,13 +42,12 @@ class Authentication extends ChangeNotifier {
 
   Future loginUser(String email, String password) async {
     try {
-      final UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
+      final UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       if (userCredential.user != null) {
-        final User user = userCredential.user;
+        final User user = userCredential.user!;
         userUid = user.uid;
         // ignore: avoid_print
         print(userUid.toString());
@@ -72,11 +70,10 @@ class Authentication extends ChangeNotifier {
   // Google SignIN
 
   Future googleSignIn(BuildContext context) async {
-    final GoogleSignInAccount googleSignInAccount =
-        await _googleSignIn.signIn();
+    final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
 
     final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+        await googleSignInAccount!.authentication;
 
     final OAuthCredential googleAuthCredential = GoogleAuthProvider.credential(
       accessToken: googleSignInAuthentication.accessToken,
@@ -87,7 +84,7 @@ class Authentication extends ChangeNotifier {
         await FirebaseAuth.instance.signInWithCredential(googleAuthCredential);
 
     if (userCredential.user != null) {
-      final User user = userCredential.user;
+      final User user = userCredential.user!;
 
       userUid = user.uid;
       // ignore: avoid_print

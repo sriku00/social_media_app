@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:social_media_app/Screens/LandingScreen/landing_bottomsheets.dart';
+
 import 'package:social_media_app/Services/image_picker_services.dart';
 import 'package:social_media_app/Utils/colors_utils.dart';
 import 'package:social_media_app/Utils/constant_styles.dart';
@@ -16,22 +16,22 @@ final postUploadUtils = ChangeNotifierProvider<PostUploadUtils>((ref) {
 class PostUploadUtils with ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
 
-  File uploadPostImage;
+  File? uploadPostImage;
 
-  File get getuploadPostImage => uploadPostImage;
+  File? get getuploadPostImage => uploadPostImage;
 
-  String uploadPostImageUrl;
-  String get getuploadPostImageUrl => uploadPostImageUrl;
+  String? uploadPostImageUrl;
+  String? get getuploadPostImageUrl => uploadPostImageUrl;
 
   // user post upload funtion to firestore & could firestore
 
   Future uploadUserAvatar(BuildContext context) async {
 
     Reference postReference = FirebaseStorage.instance.ref().child(
-        "userProfileAvatar/${context.read(imagePickerServices).getUserAvatar.path}/${TimeOfDay.now()}");
+        "userProfileAvatar/${context.read(imagePickerServices).getUserAvatar!.path}/${TimeOfDay.now()}");
     postUploadTask = postReference.putFile();
 
-    await postUploadTask.whenComplete(() {
+   / await postUploadTask.whenComplete(() {
       print("image => user Image Uploaded");
     });
     postReference.getDownloadURL().then((url) {
@@ -51,7 +51,7 @@ class PostUploadUtils with ChangeNotifier {
     uploadUserPostImage == null
         ? print("picker userAvatar")
         : uploadPostImage = File(uploadUserPostImage.path);
-    print(uploadPostImage.path);
+    print(uploadPostImage!.path);
 
     uploadUserPostImage != null
         ? userPostPreviewSheet(context)

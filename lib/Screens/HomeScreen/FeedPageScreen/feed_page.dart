@@ -6,7 +6,7 @@ class FeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: context.read(feedPageHelpers).feedPageAppBarWidget(context),
+      appBar: context.read(feedPageHelpers).feedPageAppBarWidget(context) as PreferredSizeWidget?,
       drawer: Drawer(),
       body: context.read(feedPageHelpers).feedPageBody(context),
     );

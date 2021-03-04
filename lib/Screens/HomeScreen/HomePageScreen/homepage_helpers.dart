@@ -38,7 +38,7 @@ class HomePageHelpers with ChangeNotifier {
         CustomNavigationBarItem(
           icon: CircleAvatar(
             backgroundImage: NetworkImage(
-              context.read(firebaseStorageServices).getInitUserImage,
+              context.read(firebaseStorageServices).getInitUserImage!,
             ),
             backgroundColor: constantColors.transperant,
             radius: 35.0,
