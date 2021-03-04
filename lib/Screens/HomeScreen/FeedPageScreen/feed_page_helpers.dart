@@ -44,7 +44,7 @@ class FeedPageHelpers with ChangeNotifier {
     );
   }
 
-  // FEED page Body
+  // ------------FEED page Body
 
   Widget feedPageBody(BuildContext context) {
     return SingleChildScrollView(
