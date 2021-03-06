@@ -25,7 +25,7 @@ class Authentication extends ChangeNotifier {
       if (userCredential.user != null) {
         final User user = userCredential.user!;
         userUid = user.uid;
-        // ignore: avoid_print
+
         print(" Created User uid => $userUid");
       }
     } on FirebaseAuthException catch (e) {

@@ -25,23 +25,7 @@ class PostUploadUtils with ChangeNotifier {
 
   // user post upload funtion to firestore & could firestore
 
-  Future uploadUserAvatar(BuildContext context) async {
-
-    Reference postReference = FirebaseStorage.instance.ref().child(
-        "userProfileAvatar/${context.read(imagePickerServices).getUserAvatar!.path}/${TimeOfDay.now()}");
-    postUploadTask = postReference.putFile();
-
-   / await postUploadTask.whenComplete(() {
-      print("image => user Image Uploaded");
-    });
-    postReference.getDownloadURL().then((url) {
-      context.read(imagePickerServices).userAvatarUrl = url.toString();
-
-      print(
-          "the user profile url => ${context.read(imagePickerServices).userAvatarUrl}");
-    });
-    notifyListeners();
-  }
+  
 
 // image picker funtion
   final picker = ImagePicker();
@@ -82,7 +66,7 @@ class PostUploadUtils with ChangeNotifier {
               ),
               CircleAvatar(
                 backgroundColor: constantColors.transperant,
-                backgroundImage: FileImage(),
+                backgroundImage: null,
                 radius: 70,
               ),
               SizedBox(

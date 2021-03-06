@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:hooks_riverpod/all.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import 'package:social_media_app/Screens/SplashScreen/splash_screen.dart';
 import 'package:social_media_app/Theme/my_theme.dart';
 

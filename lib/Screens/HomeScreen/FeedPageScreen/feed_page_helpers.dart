@@ -30,21 +30,17 @@ class FeedPageHelpers with ChangeNotifier {
         )
       ],
       title: RichText(
-        text: TextSpan(
-            text: "Social",
-            style: kSmallTextStyle.copyWith(fontSize: 20),
-            children: [
-              TextSpan(
-                text: "Feed",
-                style: kSmallTextStyle.copyWith(
-                    color: Colors.blueAccent, fontSize: 20),
-              )
-            ]),
+        text: TextSpan(text: "Social", style: kSmallTextStyle.copyWith(fontSize: 20), children: [
+          TextSpan(
+            text: "Feed",
+            style: kSmallTextStyle.copyWith(color: Colors.blueAccent, fontSize: 20),
+          )
+        ]),
       ),
     );
   }
 
-  // ------------FEED page Body
+  // this widget is the  Feed Page body
 
   Widget feedPageBody(BuildContext context) {
     return SingleChildScrollView(

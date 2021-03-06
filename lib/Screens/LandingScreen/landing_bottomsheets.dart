@@ -99,8 +99,7 @@ class LandingBottomSheets with ChangeNotifier {
               ),
               CircleAvatar(
                 backgroundColor: constantColors.transperant,
-                backgroundImage:
-                    FileImage(context.read(imagePickerServices).userAvatar!),
+                backgroundImage: FileImage(context.read(imagePickerServices).userAvatar!),
                 radius: 70,
               ),
               SizedBox(
@@ -124,13 +123,10 @@ class LandingBottomSheets with ChangeNotifier {
                     width: 40,
                   ),
                   ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(primary: Colors.yellowAccent),
+                    style: ElevatedButton.styleFrom(primary: Colors.yellowAccent),
                     clipBehavior: Clip.none,
                     onPressed: () {
-                      context
-                          .read(firebaseStorageServices)
-                          .uploadUserAvatar(context);
+                      context.read(firebaseStorageServices).uploadUserAvatar(context);
 
                       sigInAuthBottomSheet(context);
                     },
@@ -179,8 +175,7 @@ class LandingBottomSheets with ChangeNotifier {
         context: context,
         builder: (context) {
           return Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.50,
               width: MediaQuery.of(context).size.width,
@@ -208,8 +203,7 @@ class LandingBottomSheets with ChangeNotifier {
         context: context,
         builder: (context) {
           return Padding(
-            padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.50,
               width: MediaQuery.of(context).size.width,
@@ -233,105 +227,97 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
-    return ListView(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 160),
-              child: Divider(thickness: 5, color: Colors.grey),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _emailController,
-              style: kSmallTextStyle,
-              textAlign: TextAlign.center,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: "Email",
-                prefixIcon: Icon(
-                  EvaIcons.email,
-                  color: Colors.blueAccent,
-                ),
-              ).copyWith(
-                focusColor: Colors.blueAccent,
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide(
-                    width: 4,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _passwordController,
-              style: kSmallTextStyle,
-              textAlign: TextAlign.center,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: " password",
-                prefixIcon: Icon(
-                  EvaIcons.lock,
-                  color: Colors.blueAccent,
-                ),
-              ).copyWith(
-                focusColor: Colors.blueAccent,
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide(
-                    width: 4,
-                    color: Colors.blueAccent,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
-              clipBehavior: Clip.none,
-              onPressed: () {
-                //     Todo: implement the FirebaseAuthLogin fuctionality;
-
-                if (_emailController.text.isNotEmpty &&
-                    _passwordController.text.isNotEmpty) {
-                  context
-                      .read(authentication)
-                      .loginUser(
-                          _emailController.text, _passwordController.text)
-                      .whenComplete(() {
-                    context
-                        .read(firebaseStorageServices)
-                        .initUserData(context)
-                        .whenComplete(() {
-                      Navigator.pushReplacement(
-                          context,
-                          PageTransition(
-                              child: HomeScreen(),
-                              type: PageTransitionType.bottomToTop,
-                              duration: Duration(milliseconds: 500)));
-                    });
-                  });
-                } else {
-                  context.read(landingBottomSheets).warningBottomSheet(
-                      context, "Enter email & password correctly");
-                }
-              },
-              child: Text(
-                "LogIn",
-                style: kSmallTextStyle.copyWith(color: Colors.white),
-              ),
-            )
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 160),
+          child: Divider(thickness: 5, color: Colors.grey),
         ),
+        SizedBox(
+          height: 20,
+        ),
+        TextFormField(
+          controller: _emailController,
+          style: kSmallTextStyle,
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            hintText: "Email",
+            prefixIcon: Icon(
+              EvaIcons.email,
+              color: Colors.blueAccent,
+            ),
+          ).copyWith(
+            focusColor: Colors.blueAccent,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: BorderSide(
+                width: 4,
+                color: Colors.blueAccent,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        TextFormField(
+          controller: _passwordController,
+          style: kSmallTextStyle,
+          textAlign: TextAlign.center,
+          obscureText: true,
+          decoration: InputDecoration(
+            hintText: " password",
+            prefixIcon: Icon(
+              EvaIcons.lock,
+              color: Colors.blueAccent,
+            ),
+          ).copyWith(
+            focusColor: Colors.blueAccent,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              borderSide: BorderSide(
+                width: 4,
+                color: Colors.blueAccent,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
+          clipBehavior: Clip.none,
+          onPressed: () {
+            //     Todo: implement the FirebaseAuthLogin fuctionality;
+
+            if (_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty) {
+              context
+                  .read(authentication)
+                  .loginUser(_emailController.text, _passwordController.text)
+                  .whenComplete(() {
+                context.read(firebaseStorageServices).initUserData(context).whenComplete(() {
+                  Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                          child: HomeScreen(),
+                          type: PageTransitionType.bottomToTop,
+                          duration: Duration(milliseconds: 500)));
+                });
+              });
+            } else {
+              context
+                  .read(landingBottomSheets)
+                  .warningBottomSheet(context, "Enter email & password correctly");
+            }
+          },
+          child: Text(
+            "LogIn",
+            style: kSmallTextStyle.copyWith(color: Colors.white),
+          ),
+        )
       ],
     );
   }
@@ -339,8 +325,7 @@ class LoginForm extends StatelessWidget {
 
 // SignINForm Sheet
 class SignInForm extends StatelessWidget {
-  const SignInForm(
-      {Key? key, required this.constantColors, required BuildContext context})
+  const SignInForm({Key? key, required this.constantColors, required BuildContext context})
       : super(key: key);
 
   final ConstantColors constantColors;
@@ -367,8 +352,7 @@ class SignInForm extends StatelessWidget {
             ),
             CircleAvatar(
               backgroundColor: constantColors.transperant,
-              backgroundImage:
-                  FileImage(context.read(imagePickerServices).userAvatar!),
+              backgroundImage: FileImage(context.read(imagePickerServices).userAvatar!),
               radius: 70,
             ),
             SizedBox(
@@ -474,8 +458,7 @@ class SignInForm extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              style:
-                  ElevatedButton.styleFrom(primary: constantColors.yellowColor),
+              style: ElevatedButton.styleFrom(primary: constantColors.yellowColor),
               clipBehavior: Clip.none,
               onPressed: () {
                 //     Todo: implement the FirebaseAuthsigiN fuctionality;
@@ -484,34 +467,28 @@ class SignInForm extends StatelessWidget {
                     _nameController.text.isNotEmpty) {
                   context
                       .read(authentication)
-                      .createUserWithEmail(
-                          _emailController.text, _passwordController.text)
+                      .createUserWithEmail(_emailController.text, _passwordController.text)
                       .whenComplete(() {
                     // Todo : Navigation to homePage
                     // Todo: Upload user data to cloud fierstore
 
                     print("creating Collection/,,,,");
-                    context
-                        .read(firebaseStorageServices)
-                        .uploadUserData(context, {
+                    context.read(firebaseStorageServices).uploadUserData(context, {
                       "userUid": context.read(authentication).getUserUid,
                       "userEmail": _emailController.text,
                       "userName": _nameController.text,
-                      "userImage":
-                          context.read(imagePickerServices).getUserAvatarUrl
+                      "userImage": context.read(imagePickerServices).getUserAvatarUrl
                     });
                     print("creatin user Collecion done");
                     context.read(firebaseStorageServices).initUserData(context);
                   }).whenComplete(() {
-                    Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                            child: HomeScreen(),
-                            type: PageTransitionType.bottomToTop));
+                    Navigator.pushReplacement(context,
+                        PageTransition(child: HomeScreen(), type: PageTransitionType.bottomToTop));
                   });
                 } else {
-                  context.read(landingBottomSheets).warningBottomSheet(
-                      context, "Enter email & password correctly");
+                  context
+                      .read(landingBottomSheets)
+                      .warningBottomSheet(context, "Enter email & password correctly");
                 }
               },
               child: Text(

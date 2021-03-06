@@ -11,8 +11,7 @@ final homePageHelpers = ChangeNotifierProvider<HomePageHelpers>((ref) {
 
 class HomePageHelpers with ChangeNotifier {
   ConstantColors constantColors = ConstantColors();
-  Widget bottomNavBar(
-      int index, PageController pageController, BuildContext context) {
+  Widget bottomNavBar(int index, PageController pageController, BuildContext context) {
     return CustomNavigationBar(
       currentIndex: index,
       bubbleCurve: Curves.bounceIn,
